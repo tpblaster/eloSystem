@@ -1,4 +1,5 @@
 import time
+from decimal import Decimal
 from typing import Dict, Any
 
 K_VALUE = 32
@@ -48,9 +49,8 @@ class Match:
         losing_player.rating = losing_player.rating - rating_change
         self.player_elo["Winning Player Final ELO"] = winning_player.rating
         self.player_elo["Losing Player Final ELO"] = losing_player.rating
-        # TODO fix floating point math
         self.expected_win_percent = {"Winning Player Expected Win Rate": winner_win_percent,
-                                     "Losing Player Expected Win Rate": 1 - winner_win_percent}
+                                     "Losing Player Expected Win Rate": float(Decimal('1') - Decimal(str(winner_win_percent)))}
 
 
 def win_percent(player1_elo: int, player2_elo: int) -> float:
