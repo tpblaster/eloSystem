@@ -48,6 +48,7 @@ class Match:
         losing_player.rating = losing_player.rating - rating_change
         self.player_elo["Winning Player Final ELO"] = winning_player.rating
         self.player_elo["Losing Player Final ELO"] = losing_player.rating
+        # TODO fix floating point math
         self.expected_win_percent = {"Winning Player Expected Win Rate": winner_win_percent,
                                      "Losing Player Expected Win Rate": 1 - winner_win_percent}
 
@@ -82,6 +83,7 @@ def play_match(winning_player: Player, losing_player: Player) -> None:
     :param losing_player:  takes a player object that will be the loser
     """
     match_data = Match(winning_player, losing_player).__dict__
+    # TODO fix the keyed by time system
     time_data = time.asctime(time.localtime(time.time()))
     winning_player.match_history[time_data] = match_data
     losing_player.match_history[time_data] = match_data
